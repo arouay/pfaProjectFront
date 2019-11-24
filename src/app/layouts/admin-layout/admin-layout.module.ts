@@ -20,7 +20,9 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
-import { InterventionlistComponent } from 'app/interventionlist/interventionlist.component';
+
+import { InterventionformComponent } from './interventionform/interventionform.component';
+import { InterventionlistComponent } from './interventionlist/interventionlist.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { InterventionlistComponent } from 'app/interventionlist/interventionlist
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-    InterventionlistComponent
+    InterventionlistComponent,
+    InterventionformComponent
   ]
 })
 
