@@ -1,3 +1,8 @@
+import { Type } from "./type";
+import { Facture } from "./facture";
+import { Piece } from "./piece";
+
+
 export class Intervention {
     id:number;
     dateDebut:Date;
@@ -5,5 +10,5 @@ export class Intervention {
     commentaire:String;
     type:Type;
     facture:Facture;
-    pieces:Pieces[];
+    pieces:Piece[];
 }
