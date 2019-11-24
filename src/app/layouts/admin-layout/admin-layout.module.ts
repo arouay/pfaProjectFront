@@ -20,6 +20,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { InterventionlistComponent } from 'app/interventionlist/interventionlist.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -41,6 +42,7 @@ import {
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    InterventionlistComponent
   ]
 })
 
