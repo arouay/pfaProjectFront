@@ -1,5 +1,5 @@
 export class Type {
-    id:number;
-    libelle:string;
-    prix:number;
+    id: number;
+    libelle: string;
+    prix: number;
 }
