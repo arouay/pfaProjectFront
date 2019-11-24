@@ -3,4 +3,7 @@ export class Intervention {
     dateDebut:Date;
     dateFin:Date;
     commentaire:String;
+    type:Type;
+    facture:Facture;
+    pieces:Pieces[];
 }
