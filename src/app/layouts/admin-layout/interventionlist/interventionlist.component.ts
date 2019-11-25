@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Intervention } from 'app/entities/intervention';
+import { InterventionService } from 'app/services/intervention.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-interventionlist',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interventionlist.component.scss']
 })
 export class InterventionlistComponent implements OnInit {
+  private interventions:Intervention[];
 
-  constructor() { }
+  constructor(private _interventionService:InterventionService, private _router:Router) { }
 
   ngOnInit() {
+    this._interventionService.getAll().subscribe((response)=>{
+      this.interventions = response;
+    }, (error)=>{
+      console.log(error);
+    });
   }
 
 }
