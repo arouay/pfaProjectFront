@@ -22,11 +22,13 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
 @NgModule({
   imports: [
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,

@@ -2,79 +2,49 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-danger">
-                <h4 class="card-title">Edit Profile</h4>
-                <p class="card-category">Complete your profile</p>
+                <h4 class="card-title">Nouvelle interventions</h4>                
             </div>
             <div class="card-body">
-                <form>
+                <form (ngSubmit)="processForm()">
                     <div class="row">
-                        <div class="col-md-5">
-                          <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Company (disabled)" disabled>
+                        
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Date début" name = "dateDebut" type="date" [(ngModel)]="intervention.dateDebut">
                             </mat-form-field>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Username">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                            <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Email address" type="email">
+                              <input matInput placeholder="Date fin" name="dateFin" type="date" [(ngModel)]="intervention.dateFin">
                             </mat-form-field>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Fist Name" type="text">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Last Name" type="text">
-                          </mat-form-field>
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-12">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Adress" type="text">
+                            <input matInput placeholder="Commentaire" type="text" name="commentaire" [(ngModel)]="intervention.commentaire">
                           </mat-form-field>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="City" type="text">
-                          </mat-form-field>
+                    <div class="form-group">
+                        <label>Type de l'intervention</label>&nbsp;&nbsp;&nbsp;
+                        <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i><strong>Ajouter un type</strong></i></a>
+                        <select class="form-control" name="type">
+                          <option value="type1">Type 1</option>                                                                 
+                          <option value="type2">Type 2</option>                                                                 
+                          <option value="type3">Type 3</option>                                                                 
+                        </select>                                
+                      </div>
+                      <div class="form-group">
+                          <label>Facture</label>&nbsp;&nbsp;&nbsp;
+                          <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i><strong>Ajouter une facture</strong></i></a>
+                          <select class="form-control" name="type">
+                            <option value="facture1">facture 1</option>                                                                 
+                            <option value="facture2">facture 2</option>                                                                 
+                            <option value="facture3">facture 3</option>                                                                 
+                          </select>                                
                         </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Country" type="text">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Postal Code" type="text">
-                          </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                          <label>About Me</label>
-                          <mat-form-field class="example-full-width">
-                             <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
-                           </mat-form-field>
-                            <!-- <div class="form-group">
-
-                                <div class="form-group">
-                                    <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                    <textarea class="form-control" rows="5"></textarea>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
                     <button mat-raised-button type="submit" class="btn btn-danger pull-right">Valider</button>
                     <div class="clearfix"></div>
                 </form>

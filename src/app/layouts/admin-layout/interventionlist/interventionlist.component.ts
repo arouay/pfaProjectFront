@@ -14,11 +14,11 @@ export class InterventionlistComponent implements OnInit {
   constructor(private _interventionService:InterventionService, private _router:Router) { }
 
   ngOnInit() {
-    this._interventionService.getAll().subscribe((response)=>{
+    /*this._interventionService.getAll().subscribe((response)=>{
       this.interventions = response;
     }, (error)=>{
       console.log(error);
-    });
+    });*/
   }
 
 }
