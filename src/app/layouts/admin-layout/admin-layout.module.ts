@@ -24,6 +24,7 @@ import {
 
 import { InterventionformComponent } from './interventionform/interventionform.component';
 import { InterventionlistComponent } from './interventionlist/interventionlist.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +36,6 @@ import { InterventionlistComponent } from './interventionlist/interventionlist.c
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    
   ],
   declarations: [
     DashboardComponent,
@@ -47,8 +47,10 @@ import { InterventionlistComponent } from './interventionlist/interventionlist.c
     NotificationsComponent,
     UpgradeComponent,
     InterventionlistComponent,
-    InterventionformComponent
+    InterventionformComponent,
+    
   ]
+  
 })
 
 export class AdminLayoutModule {}
