@@ -24,6 +24,8 @@ import {
 
 import { InterventionformComponent } from './interventionform/interventionform.component';
 import { InterventionlistComponent } from './interventionlist/interventionlist.component';
+import { MarqueModelformComponent } from './marque-modelform/marque-modelform.component';
+import { MarqueModellistComponent } from './marque-modellist/marque-modellist.component';
 
 @NgModule({
   imports: [
@@ -48,6 +50,8 @@ import { InterventionlistComponent } from './interventionlist/interventionlist.c
     UpgradeComponent,
     InterventionlistComponent,
     InterventionformComponent,
+    MarqueModelformComponent,
+    MarqueModellistComponent,
     
   ]
   

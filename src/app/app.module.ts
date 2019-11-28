@@ -22,6 +22,7 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material';
 import { TypeformComponent } from './typeform/typeform.component';
 import { FactureformComponent } from './factureform/factureform.component';
@@ -32,6 +33,7 @@ import { FactureformComponent } from './factureform/factureform.component';
 @NgModule({
   imports: [
     MatDialogModule,
+    HttpClientModule,
     HttpModule,
     BrowserAnimationsModule,
     FormsModule,

@@ -1,0 +1,87 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <!--    <app-marque-modelform></app-marque-modelform>-->
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Liste des marques</h4>
+                        <p class="card-category"> Gestion des marques</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    Designation
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let m of marques">
+                                    <td style="cursor: pointer" (click)="filterById(m['id'])">
+                                        {{m['designation']}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Liste des models</h4>
+                        <p class="card-category"> Gestion des models</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    Designation
+                                </th>
+                                <th>
+                                    Version
+                                </th>
+                                <th>
+                                    Energie
+                                </th>
+                                <th>
+                                    Boîte de vitesse
+                                </th>
+                                <th>
+                                    Puiss. fiscale
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let m of models">
+                                    <td>
+                                        {{m['designation']}}
+                                    </td>
+                                    <td>
+                                        {{m['version']}}
+                                    </td>
+                                    <td>
+                                        {{m['energie']}}
+                                    </td>
+                                    <td>
+                                        {{m['boiteVitesse']}}
+                                    </td>
+                                    <td>
+                                        {{m['puissFiscal']}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
