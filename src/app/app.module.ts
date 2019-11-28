@@ -22,13 +22,17 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material';
+import { TypeformComponent } from './typeform/typeform.component';
+import { FactureformComponent } from './factureform/factureform.component';
+
 
 
 
 @NgModule({
   imports: [
-    HttpClientModule,
+    MatDialogModule,
+    HttpModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
@@ -37,14 +41,19 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    }),
+    
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    TypeformComponent,
+    FactureformComponent
+    
     
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[TypeformComponent, FactureformComponent]
 })
 export class AppModule { }

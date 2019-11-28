@@ -12,6 +12,7 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
+
 import {
   MatButtonModule,
   MatInputModule,
@@ -23,8 +24,7 @@ import {
 
 import { InterventionformComponent } from './interventionform/interventionform.component';
 import { InterventionlistComponent } from './interventionlist/interventionlist.component';
-import { MarqueModellistComponent } from './marque-modellist/marque-modellist.component';
-import { MarqueModelformComponent } from './marque-modelform/marque-modelform.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -36,7 +36,6 @@ import { MarqueModelformComponent } from './marque-modelform/marque-modelform.co
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-
   ],
   declarations: [
     DashboardComponent,
@@ -49,9 +48,9 @@ import { MarqueModelformComponent } from './marque-modelform/marque-modelform.co
     UpgradeComponent,
     InterventionlistComponent,
     InterventionformComponent,
-    MarqueModellistComponent,
-    MarqueModelformComponent
+    
   ]
+  
 })
 
 export class AdminLayoutModule {}
