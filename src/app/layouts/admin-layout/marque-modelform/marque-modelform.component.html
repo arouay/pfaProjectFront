@@ -1,55 +1,44 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header card-header-danger">
-        <h4 class="card-title">Nouvelle interventions</h4>
+<!-- Modal -->
+<div class="modal fade" id="MarqueModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter Marque</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="card-body">
-        <form (ngSubmit)="processForm()">
-          <div class="row">
-
-            <div class="col-md-6">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Date début" name = "dateDebut" type="date" [(ngModel)]="intervention.dateDebut">
-              </mat-form-field>
-            </div>
-            <div class="col-md-6">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Date fin" name="dateFin" type="date" [(ngModel)]="intervention.dateFin">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Commentaire" type="text" name="commentaire" [(ngModel)]="intervention.commentaire">
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Type de l'intervention</label>&nbsp;&nbsp;&nbsp;
-            <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i><strong>Ajouter un type</strong></i></a>
-            <select class="form-control" name="type">
-              <option value="type1">Type 1</option>
-              <option value="type2">Type 2</option>
-              <option value="type3">Type 3</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Facture</label>&nbsp;&nbsp;&nbsp;
-            <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i><strong>Ajouter une facture</strong></i></a>
-            <select class="form-control" name="type">
-              <option value="facture1">facture 1</option>
-              <option value="facture2">facture 2</option>
-              <option value="facture3">facture 3</option>
-            </select>
-          </div>
-          <button mat-raised-button type="submit" class="btn btn-danger pull-right">Valider</button>
-          <div class="clearfix"></div>
-        </form>
+      <div class="modal-body">
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Désignation" name = "designation" type="text" [(ngModel)]="marque.designation">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" (click)="addMarque()" data-dismiss="modal">Ajouter</button>
       </div>
     </div>
   </div>
+</div>
 
+<div class="modal fade" id="ModelModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

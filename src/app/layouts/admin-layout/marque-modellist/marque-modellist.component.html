@@ -1,11 +1,11 @@
-<div class="main-content">
-    <div class="container-fluid">
+<div class="main-content" style="height: 85%">
+    <div class="container-fluid" style="height: 100%">
 
         <!--    <app-marque-modelform></app-marque-modelform>-->
 
-        <div class="row">
+        <div class="row" style="height: 100%">
             <div class="col-md-3">
-                <div class="card">
+                <div class="card" style="height: 100%">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Liste des marques</h4>
                         <p class="card-category"> Gestion des marques</p>
@@ -27,19 +27,35 @@
                                 </tbody>
                             </table>
                         </div>
+                        <i class="material-icons" style="margin-left: 95%;cursor: pointer" data-toggle="modal" data-target="#MarqueModalCenter">
+                            add_circle_outline
+                        </i>
                     </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1"> << </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"> >> </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
             <!-- -->
             <div class="col-md-9">
-                <div class="card">
+                <div class="card" style="height: 100%">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Liste des models</h4>
                         <p class="card-category"> Gestion des models</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table ">
                                 <thead class=" text-primary">
                                 <th>
                                     Designation
@@ -78,10 +94,75 @@
                                 </tbody>
                             </table>
                         </div>
+                        <i class="material-icons" style="margin-left: 95%;cursor: pointer" data-toggle="modal" data-target="#ModelModalCenter">
+                            add_circle_outline
+                        </i>
                     </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+
+<!-- Modal form
+<app-marque-modelform></app-marque-modelform> -->
+<!-- Modal -->
+<div class="modal fade" id="MarqueModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ajouter Marque</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Désignation" name = "designation" type="text" [(ngModel)]="marque.designation">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" (click)="addMarque()" data-dismiss="modal">Ajouter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModelModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal form-->
