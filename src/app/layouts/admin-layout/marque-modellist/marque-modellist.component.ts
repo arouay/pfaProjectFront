@@ -43,4 +43,7 @@ export class MarqueModellistComponent implements OnInit {
         console.log(this.marques)
     }
 
+    refrech() {
+        this.models = this.models_initial;
+    }
 }
