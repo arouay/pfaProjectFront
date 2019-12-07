@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialog,MatDialogConfig } from '@angular/material'
 @Component({
   selector: 'app-typeform',
   templateUrl: './typeform.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TypeformComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _matDialog:MatDialog) { }
 
   ngOnInit() {
   }
-
+  close(){
+    this._matDialog.closeAll();
+  }
 }

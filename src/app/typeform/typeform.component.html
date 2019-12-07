@@ -1,25 +1,36 @@
-<div class="row">
-  <div class="col-md-6">
-    
-      <input matInput placeholder="Libelle" type="text" name="libelle" >
-    
+<div class="card">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title">Nouveau type</h4>
   </div>
-  <div class="col-md-6">
-    
-      <input matInput placeholder="prix" type="text" name="prix" >
-    
+  <br>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+
+        <input class='form-control' placeholder="Libelle" type="text" name="libelle">
+
+      </div>
+      <div class="col-md-6">
+
+        <input class='form-control' placeholder="prix" type="text" name="prix">
+
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+
+        <button class="btn btn-danger" (click)="close()">Annuler</button>
+
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+
+        <button class="btn btn-light">Valider</button>
+
+      </div>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-3">
-    
-    <button class="btn btn-primary">Valider</button>
-  
-</div>
 
-<div class="col-md-3">
-    
-  <button class="btn btn-danger">Annuler</button>
-
-</div>
 </div>

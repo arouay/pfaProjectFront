@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-factureform',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FactureformComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _matDialog: MatDialog) { }
 
   ngOnInit() {
   }
-
+  close() {
+    this._matDialog.closeAll();
+  }
 }

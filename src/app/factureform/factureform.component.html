@@ -1,25 +1,36 @@
-<div class="row">
-  <div class="col-md-6">
-    
-      <input matInput placeholder="Date" type="date" name="date" >
-    
+<div class="card">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title">Nouvelle facture</h4>
   </div>
-  <div class="col-md-6">
-    
-      <input matInput placeholder="Montant" type="text" name="montant" >
-    
+<br>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+
+        <input class='form-control' placeholder="Date" type="date" name="date">
+
+      </div>
+      <div class="col-md-6">
+
+        <input class='form-control' placeholder="Montant" type="text" name="montant">
+
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+
+        <button class="btn btn-danger" (click)='close()'>Annuler</button>
+
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+
+        <button class="btn btn-light">Valider</button>
+
+      </div>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-3">
-    
-    <button class="btn btn-primary">Valider</button>
-  
-</div>
 
-<div class="col-md-3">
-    
-  <button class="btn btn-danger">Annuler</button>
-
-</div>
 </div>
