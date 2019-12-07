@@ -1,14 +1,17 @@
 <div class="main-content">
-  <div class="container-fluid">
-     
-          <app-interventionform></app-interventionform>
-      
+  <div class="container-fluid">                    
       <div class="row">
           <div class="col-md-12">
               <div class="card">
                   <div class="card-header card-header-danger">
-                      <h4 class="card-title ">Liste des interventions</h4>
-                      <p class="card-category"> Gestion des interventions</p>
+                      <div class="row">
+                          <div class="col-md-4"><h4 class="card-title ">Gestion des interventions</h4></div>
+                          <div class="col-md-4"></div>
+                          <div class="col-md-3"></div>
+                          <div class="col-md-1"><i class="material-icons" style="cursor: pointer;" (click)="newIntervention()">add_circle_outline</i></div>
+                      </div>                      
+                      <p class="card-category"> Liste des interventions</p>
+                      
                   </div>
                   <div class="card-body">
                       <div class="table-responsive">

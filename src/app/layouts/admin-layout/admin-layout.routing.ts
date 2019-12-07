@@ -11,6 +11,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { InterventionlistComponent } from './interventionlist/interventionlist.component';
 import { MarqueModellistComponent } from './marque-modellist/marque-modellist.component';
 import { EtatslistComponent } from './etatslist/etatslist.component';
+import { InterventionformComponent } from './interventionform/interventionform.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -24,5 +25,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'interventionlist',        component: InterventionlistComponent },
     { path: 'marque-modellist',        component: MarqueModellistComponent },
     { path: 'etatslist',        component: EtatslistComponent },
+    { path: 'interventionform',        component: InterventionformComponent },
 
 ];

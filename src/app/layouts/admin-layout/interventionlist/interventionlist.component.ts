@@ -22,5 +22,7 @@ export class InterventionlistComponent implements OnInit {
       console.log(error);
     });
   }
-
+  newIntervention(){
+    this._router.navigate(['interventionform']);
+  }
 }
