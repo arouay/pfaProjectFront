@@ -10,6 +10,7 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { InterventionlistComponent } from './interventionlist/interventionlist.component';
 import { MarqueModellistComponent } from './marque-modellist/marque-modellist.component';
+import { EtatslistComponent } from './etatslist/etatslist.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -22,5 +23,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'interventionlist',        component: InterventionlistComponent },
     { path: 'marque-modellist',        component: MarqueModellistComponent },
+    { path: 'etatslist',        component: EtatslistComponent },
 
 ];

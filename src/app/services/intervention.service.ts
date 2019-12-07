@@ -13,7 +13,7 @@ import { Intervention } from 'app/entities/intervention';
   providedIn: 'root'
 })
 export class InterventionService {
-  private baseUrl:string = 'http://localhost:8080/interventions/';//Tous les URLs concernant intervention ont la mème base
+  private baseUrl:string = 'http://localhost:8080/interventions';//Tous les URLs concernant intervention ont la mème base
   private headers = new Headers({'Content-Type':'application/json'});
   private options = new RequestOptions({headers:this.headers});
   private intervention:Intervention;//pour partager l'objet entre les composants
