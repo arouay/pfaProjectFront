@@ -8,6 +8,9 @@ import { FactureformComponent } from 'app/factureform/factureform.component';
 import { Router } from '@angular/router';
 import { Type } from 'app/entities/type';
 import { TypeService } from 'app/services/type.service';
+import { element } from '@angular/core/src/render3';
+import { Facture } from 'app/entities/facture';
+import { FactureService } from 'app/services/facture.service';
 
 @Component({
   selector: 'app-interventionform',
@@ -17,7 +20,10 @@ import { TypeService } from 'app/services/type.service';
 export class InterventionformComponent implements OnInit {
   private intervention:Intervention;
   private types:Type[];
-  constructor(private _interventionService:InterventionService, private _matDialog:MatDialog,private _router:Router, private typeService:TypeService) { }
+  private factures:Facture[];
+  private type:number;
+  private facture:number;
+  constructor(private _interventionService:InterventionService, private _matDialog:MatDialog,private _router:Router, private typeService:TypeService, private _factureService:FactureService) { }
 
   ngOnInit() {
     //test si l'objet est nouveau ou bien provenant d'un autre composant par le biais du service'
@@ -33,14 +39,23 @@ export class InterventionformComponent implements OnInit {
         console.log(error);
       }
     );
+    this._factureService.getAll().subscribe(
+      (response)=>{
+        this.factures = response;
+      }, (error)=>{
+        console.log(error);
+      }
+    );
   }
 
   processForm(){    
+    this.intervention.type = this.types.find(i=>i.id == this.type);
+    this.intervention.facture = this.factures.find(i=>i.id == this.facture);
     this._interventionService.newIntervention(this.intervention).subscribe((response)=>{      
       this._router.navigate(['interventionlist']);
     }, (error)=>{
       console.log(error);
-    });
+    });        
   }
 
   newType(){

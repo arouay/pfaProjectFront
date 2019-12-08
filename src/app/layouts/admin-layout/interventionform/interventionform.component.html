@@ -33,8 +33,8 @@
                         <label>Type de l'intervention</label>&nbsp;&nbsp;&nbsp;
                         <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i (click)="newType()"><strong>Ajouter un type</strong></i></a>
                         <div class="col-md-6">
-                          <select class="form-control" name="type" class="browser-default custom-select" [(ngModel)]="intervention.type">                          
-                            <option *ngFor="let t of types" value="t.id">Libelle: {{t.libelle}} Prix: {{t.prix}} DH</option>                                                                                                                                                              
+                          <select class="form-control" name="type" class="browser-default custom-select" [(ngModel)]="type">                          
+                            <option *ngFor="let t of types" value="{{t.id}}">Libelle: {{t.libelle}} Prix: {{t.prix}} DH</option>                                                                                                                                                              
                           </select>
                         </div>                                
                       </div>
@@ -42,10 +42,8 @@
                           <label>Facture</label>&nbsp;&nbsp;&nbsp;
                           <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i (click)="newFacture()"><strong>Ajouter une facture</strong></i></a>
                           <div class="col-md-6">
-                            <select class="form-control" name="type" class="browser-default custom-select">
-                              <option value="facture1">facture 1</option>                                                                 
-                              <option value="facture2">facture 2</option>                                                                 
-                              <option value="facture3">facture 3</option>                                                                 
+                            <select class="form-control" name="facture" class="browser-default custom-select" [(ngModel)]="facture">
+                              <option *ngFor="let f of factures" value="{{f.id}}">Date: {{f.date}} Montant: {{f.montant}}</option>                                                                                                                                                           
                             </select>             
                           </div>                   
                         </div>
