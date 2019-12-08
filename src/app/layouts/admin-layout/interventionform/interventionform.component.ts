@@ -6,6 +6,8 @@ import { MatDialog,MatDialogConfig } from '@angular/material'
 import { TypeformComponent } from 'app/typeform/typeform.component';
 import { FactureformComponent } from 'app/factureform/factureform.component';
 import { Router } from '@angular/router';
+import { Type } from 'app/entities/type';
+import { TypeService } from 'app/services/type.service';
 
 @Component({
   selector: 'app-interventionform',
@@ -14,21 +16,26 @@ import { Router } from '@angular/router';
 })
 export class InterventionformComponent implements OnInit {
   private intervention:Intervention;
-
-  constructor(private _interventionService:InterventionService, private _matDialog:MatDialog,private _router:Router) { }
+  private types:Type[];
+  constructor(private _interventionService:InterventionService, private _matDialog:MatDialog,private _router:Router, private typeService:TypeService) { }
 
   ngOnInit() {
     //test si l'objet est nouveau ou bien provenant d'un autre composant par le biais du service'
     if(this._interventionService.getter() == null){
       this.intervention = new Intervention();
     }else {
-      this.intervention = this._interventionService.getter();
+      this.intervention = this._interventionService.getter(); 
     }
-    
+    this.typeService.getAll().subscribe(
+      (response)=>{
+        this.types = response;
+      }, (error)=>{
+        console.log(error);
+      }
+    );
   }
 
-  processForm(){
-    console.log(this.intervention);
+  processForm(){    
     this._interventionService.newIntervention(this.intervention).subscribe((response)=>{      
       this._router.navigate(['interventionlist']);
     }, (error)=>{

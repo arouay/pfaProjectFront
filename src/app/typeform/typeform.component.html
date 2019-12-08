@@ -7,12 +7,12 @@
     <div class="row">
       <div class="col-md-6">
 
-        <input class='form-control' placeholder="Libelle" type="text" name="libelle">
+        <input class='form-control' placeholder="Libelle" type="text" name="libelle" [(ngModel)]="type.libelle">
 
       </div>
       <div class="col-md-6">
 
-        <input class='form-control' placeholder="prix" type="text" name="prix">
+        <input class='form-control' placeholder="prix" type="text" name="prix" [(ngModel)]="type.prix">
 
       </div>
     </div>
@@ -27,7 +27,7 @@
       <div class="col-md-1"></div>
       <div class="col-md-3">
 
-        <button class="btn btn-light">Valider</button>
+        <button class="btn btn-light" (click)="add()">Valider</button>
 
       </div>
     </div>
