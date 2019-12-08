@@ -32,20 +32,24 @@
                     <div class="form-group">
                         <label>Type de l'intervention</label>&nbsp;&nbsp;&nbsp;
                         <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i (click)="newType()"><strong>Ajouter un type</strong></i></a>
-                        <select class="form-control" name="type">
-                          <option value="type1">Type 1</option>                                                                 
-                          <option value="type2">Type 2</option>                                                                 
-                          <option value="type3">Type 3</option>                                                                 
-                        </select>                                
+                        <div class="col-md-6">
+                          <select class="form-control" name="type" class="browser-default custom-select">
+                            <option value="type1">Type 1</option>                                                                 
+                            <option value="type2">Type 2</option>                                                                 
+                            <option value="type3">Type 3</option>                                                                 
+                          </select>
+                        </div>                                
                       </div>
                       <div class="form-group">
                           <label>Facture</label>&nbsp;&nbsp;&nbsp;
                           <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i (click)="newFacture()"><strong>Ajouter une facture</strong></i></a>
-                          <select class="form-control" name="type">
-                            <option value="facture1">facture 1</option>                                                                 
-                            <option value="facture2">facture 2</option>                                                                 
-                            <option value="facture3">facture 3</option>                                                                 
-                          </select>                                
+                          <div class="col-md-6">
+                            <select class="form-control" name="type" class="browser-default custom-select">
+                              <option value="facture1">facture 1</option>                                                                 
+                              <option value="facture2">facture 2</option>                                                                 
+                              <option value="facture3">facture 3</option>                                                                 
+                            </select>             
+                          </div>                   
                         </div>
                     <button mat-raised-button type="submit" class="btn btn-danger pull-right">Valider</button>
                     <div class="clearfix"></div>

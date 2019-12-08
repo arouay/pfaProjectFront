@@ -25,4 +25,10 @@ export class InterventionlistComponent implements OnInit {
   newIntervention(){
     this._router.navigate(['interventionform']);
   }
+  update(i:Intervention){
+    alert("update ?")
+  }
+  delete(i:Intervention){
+    alert("delete ?")
+  }
 }
