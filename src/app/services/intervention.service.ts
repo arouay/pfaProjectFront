@@ -25,8 +25,8 @@ export class InterventionService {
   getAll(){
     return this._http.get(this.baseUrl+'/all',this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
   }
-  deleteIntervention(intervention:Intervention){
-
+  deleteIntervention(id:number){
+    return this._http.delete(this.baseUrl+'/delete/'+id,this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
   }
   newIntervention(intervention:Intervention){
     return this._http.post(this.baseUrl+'/new', JSON.stringify(intervention), this.options).map((response:Response)=>response.json()).catch(this.errorHandler);

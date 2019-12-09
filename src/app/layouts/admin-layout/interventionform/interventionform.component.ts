@@ -51,11 +51,12 @@ export class InterventionformComponent implements OnInit {
   processForm(){    
     this.intervention.type = this.types.find(i=>i.id == this.type);
     this.intervention.facture = this.factures.find(i=>i.id == this.facture);
-    this._interventionService.newIntervention(this.intervention).subscribe((response)=>{      
+    this._interventionService.newIntervention(this.intervention).subscribe((response)=>{            
       this._router.navigate(['interventionlist']);
     }, (error)=>{
       console.log(error);
     });        
+    this.intervention = new Intervention();//Réinitialiser l'objet pour une autre operation
   }
 
   newType(){
