@@ -54,8 +54,8 @@
                                         <td>
                                             {{i.facture.date}} <strong>Montant: </strong>{{i.facture.montant}} DH
                                         </td>                                                                                                                         
-                                        <td><button type="button" class="btn btn-info">Pièces utilisées</button></td>  
-                                        <td><button type="button" class="btn btn-info">Gestion des états</button></td>                                      
+                                        <td><button type="button" class="btn btn-info" (click)="navigate('pu',i)">Pièces utilisées</button></td>  
+                                        <td><button type="button" class="btn btn-info" (click)="navigate('ge',i)">Gestion des états</button></td>                                      
                                         <td><i class="material-icons" style="cursor: pointer;" (click)="update(i)">create</i></td>
                                         <td><i class="material-icons" style="cursor: pointer;color: red;" (click)="delete(i.id)">delete_sweep</i></td>
                                     </tr>
