@@ -40,6 +40,7 @@ export class InterventionlistComponent implements OnInit {
   }
   navigate(destination:String,i:Intervention){
     if(destination == 'pu'){    
+      this._interventionService.setter(i);
       this._router.navigate(['pieceslist']);
     }else if(destination == 'ge'){
       this._router.navigate(['gestionetats']);

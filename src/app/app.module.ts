@@ -30,6 +30,7 @@ import { FactureformComponent } from './factureform/factureform.component';
 
 
 
+
 @NgModule({
   imports: [
     MatDialogModule,
@@ -50,7 +51,8 @@ import { FactureformComponent } from './factureform/factureform.component';
     AppComponent,
     AdminLayoutComponent,
     TypeformComponent,
-    FactureformComponent
+    FactureformComponent,
+    
     
     
   ],

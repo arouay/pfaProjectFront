@@ -7,7 +7,31 @@
             <h4 class="card-title ">Liste des pièces</h4>
           </div>
           <div class="card-body">
-            
+            <div class="table-responsive">
+              <table class="table">
+                  <thead class=" text-primary">
+                      <th>
+                          Référence
+                      </th>
+                      <th>
+                          Désignation
+                      </th>                      
+
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let p of pieces">
+                          <td>
+                              {{p.reference}}
+                          </td>
+                          <td>
+                              {{p.designation}}
+                          </td>                                                                                                                                                   
+                          <td><i class="material-icons" style="cursor: pointer;color: red;" (click)="delete()">delete_sweep</i></td>
+                      </tr>
+
+                  </tbody>
+              </table>
+          </div>
         </div>
       </div>
 

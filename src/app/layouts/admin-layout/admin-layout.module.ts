@@ -29,6 +29,7 @@ import { MarqueModellistComponent } from './marque-modellist/marque-modellist.co
 import { EtatslistComponent } from './etatslist/etatslist.component';
 import { GestionetatsComponent } from './gestionetats/gestionetats.component';
 import { PiecelistComponent } from './piecelist/piecelist.component';
+import { StockpieceComponent } from './stockpiece/stockpiece.component';
 
 @NgModule({
   imports: [
@@ -58,6 +59,7 @@ import { PiecelistComponent } from './piecelist/piecelist.component';
     EtatslistComponent,
     GestionetatsComponent,
     PiecelistComponent,
+    StockpieceComponent,
     
   ]
   

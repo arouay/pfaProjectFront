@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Piece } from 'app/entities/piece';
+import { InterventionService } from 'app/services/intervention.service';
 
 @Component({
   selector: 'app-piecelist',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./piecelist.component.scss']
 })
 export class PiecelistComponent implements OnInit {
-
-  constructor() { }
+  private pieces:Piece[];
+  constructor(private _interventionService:InterventionService) { }
 
   ngOnInit() {
+    this.pieces = this._interventionService.getter().pieces;
   }
 
 }
