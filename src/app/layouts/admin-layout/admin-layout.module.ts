@@ -27,6 +27,9 @@ import { InterventionlistComponent } from './interventionlist/interventionlist.c
 import { MarqueModelformComponent } from './marque-modelform/marque-modelform.component';
 import { MarqueModellistComponent } from './marque-modellist/marque-modellist.component';
 import { EtatslistComponent } from './etatslist/etatslist.component';
+import { GestionetatsComponent } from './gestionetats/gestionetats.component';
+import { PiecelistComponent } from './piecelist/piecelist.component';
+import { StockpieceComponent } from './stockpiece/stockpiece.component';
 
 @NgModule({
   imports: [
@@ -54,6 +57,9 @@ import { EtatslistComponent } from './etatslist/etatslist.component';
     MarqueModelformComponent,
     MarqueModellistComponent,
     EtatslistComponent,
+    GestionetatsComponent,
+    PiecelistComponent,
+    StockpieceComponent,
     
   ]
   

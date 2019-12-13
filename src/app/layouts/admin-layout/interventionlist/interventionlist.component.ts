@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Intervention } from 'app/entities/intervention';
 import { InterventionService } from 'app/services/intervention.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-interventionlist',
@@ -15,9 +16,7 @@ export class InterventionlistComponent implements OnInit {
 
   ngOnInit() {
     this._interventionService.getAll().subscribe((response)=>{
-      this.interventions = response;
-      console.log('mon objet : ',this.interventions)
-      console.log('la reponse : ',response)
+      this.interventions = response;      
     }, (error)=>{
       console.log(error);
     });
@@ -26,9 +25,25 @@ export class InterventionlistComponent implements OnInit {
     this._router.navigate(['interventionform']);
   }
   update(i:Intervention){
-    alert("update ?")
+    this._interventionService.setter(i);
+    this._router.navigate(['interventionform']);
   }
-  delete(i:Intervention){
-    alert("delete ?")
+  delete(i:number){
+    if(confirm("Êtes-vous sur de vouloir supprimer l'intervention ?")){
+      this._interventionService.deleteIntervention(i).subscribe((response)=>{
+        this.ngOnInit();
+        console.log(response);
+      }, (error)=>{
+        console.log(error);
+      });
+    }
+  }
+  navigate(destination:String,i:Intervention){
+    if(destination == 'pu'){    
+      this._interventionService.setter(i);
+      this._router.navigate(['pieceslist']);
+    }else if(destination == 'ge'){
+      this._router.navigate(['gestionetats']);
+    }
   }
 }

@@ -7,16 +7,15 @@ import 'rxjs/add/observable/throw';
 
 import { error } from 'util';
 import { Observable } from 'rxjs';
-import { Intervention } from 'app/entities/intervention';
-
+import { Piece } from 'app/entities/piece';
 @Injectable({
   providedIn: 'root'
 })
-export class InterventionService {
-  private baseUrl:string = 'http://localhost:8080/interventions';//Tous les URLs concernant intervention ont la mème base
+export class PieceService {
+  private baseUrl:string = 'http://localhost:8080/pieces';
   private headers = new Headers({'Content-Type':'application/json'});
   private options = new RequestOptions({headers:this.headers});
-  private intervention:Intervention;//pour partager l'objet entre les composants
+  private piece:Piece;//pour partager l'objet entre les composants
 
   constructor(private _http:Http) { }
   errorHandler(){
@@ -25,16 +24,16 @@ export class InterventionService {
   getAll(){
     return this._http.get(this.baseUrl+'/all',this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
   }
-  deleteIntervention(id:number){
+  deletePiece(id:number){
     return this._http.delete(this.baseUrl+'/delete/'+id,this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
   }
-  newIntervention(intervention:Intervention){
-    return this._http.post(this.baseUrl+'/new', JSON.stringify(intervention), this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
+  newPiece(piece:Piece){
+    return this._http.post(this.baseUrl+'/new', JSON.stringify(piece), this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
   }
   getter(){
-    return this.intervention;
+    return this.piece;
   }
-  setter(intervention:Intervention){
-    this.intervention = intervention;
+  setter(piece:Piece){
+    this.piece = piece;
   }
 }

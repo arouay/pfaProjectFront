@@ -1,0 +1,84 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <h4 class="card-title ">Stock des pieces</h4>
+                          </div>
+                          <div class="col-md-4"></div>
+                          <div class="col-md-3"></div>
+                          <div class="col-md-1"><i class="material-icons" style="cursor: pointer;"
+                                  (click)="newPiece()">add_circle_outline</i></div>
+                      </div>
+                      <p class="card-category"> Pieces disponible dans le stock</p>
+
+                  </div>
+                  <div class="card-body">
+                      <div class="card-header card-header-light">              
+                          <div class="row">
+                            <div class="col-md-3">
+                              <select name="" class="browser-default custom-select">
+                                <option *ngFor="let r of refs" value="r">{{r}}</option>
+                                
+                              </select>
+                            </div>
+                            <div class="col-md-3">
+                              <select name="" class="browser-default custom-select">
+                                <option  *ngFor="let p of prix" value="">{{p}}</option>
+                                
+                              </select>
+                            </div>
+                            <div class="col-md-3">
+                              <select name="" class="browser-default custom-select">
+                                <option *ngFor="let d of designations" value="">{{d}}</option>
+                               
+                              </select>
+                            </div>
+                            <div class="col-md-3">
+                              <button class="btn btn-info">Rechercher</button>
+                            </div>                            
+                          </div>
+                        </div>
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead class=" text-primary">
+                                  <th>
+                                      Référence
+                                  </th>
+                                  <th>
+                                      Désignation
+                                  </th>
+                                  <th>
+                                      Prix
+                                  </th>                                  
+                                 
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let p of pieces">
+                                      <td>
+                                          {{p.reference}}
+                                      </td>
+                                      <td>
+                                          {{p.designation}}
+                                      </td>
+                                      <td>
+                                          {{p.prix}} DH
+                                      </td> 
+                                      
+                                      <td><i class="material-icons" style="cursor: pointer;" (click)="update()">create</i></td>
+                                      <td><i class="material-icons" style="cursor: pointer;color: red;" (click)="delete()">delete_sweep</i></td>
+                                  </tr>
+
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
