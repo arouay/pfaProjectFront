@@ -9,7 +9,7 @@
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Liste des marques</h4>
                         <p class="card-category"> Gestion des marques</p>
-                        <i  (click)="refrech()" class="material-icons" style="cursor: pointer;margin-left: 90%" >
+                        <i (click)="refrech()" class="material-icons" style="cursor: pointer;margin-left: 90%">
                             autorenew
                         </i>
                     </div>
@@ -30,7 +30,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        <i class="material-icons" style="margin-left: 95%;cursor: pointer" data-toggle="modal" data-target="#MarqueModalCenter">
+                        <i class="material-icons" style="margin-left: 95%;cursor: pointer" data-toggle="modal"
+                           data-target="#MarqueModalCenter">
                             add_circle_outline
                         </i>
                     </div>
@@ -97,20 +98,18 @@
                                 </tbody>
                             </table>
                         </div>
-                        <i class="material-icons"  style="margin-left: 95%;cursor: pointer" data-toggle="modal" data-target="#ModelModalCenter">
+                        <i class="material-icons" style="margin-left: 95%;cursor: pointer" data-toggle="modal"
+                           data-target="#ModelModalCenter">
                             add_circle_outline
                         </i>
                     </div>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
+                            <li class="page-item"><a class="page-link" (click)="ModelPagination(-1)">Previous</a></li>
+                            <li class="page-item"><a class="page-link" (click)="ModelPagination(1)">1</a></li>
+                            <li class="page-item"><a class="page-link" (click)="ModelPagination(2)">2</a></li>
+                            <li class="page-item"><a class="page-link" (click)="ModelPagination(3)">3</a></li>
+                            <li class="page-item"><a class="page-link" (click)="ModelPagination(0)">Next</a>
                             </li>
                         </ul>
                     </nav>
@@ -124,7 +123,8 @@
 <!-- Modal form
 <app-marque-modelform></app-marque-modelform> -->
 <!-- Modal -->
-<div class="modal fade" id="MarqueModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="MarqueModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -136,19 +136,22 @@
             <div class="modal-body">
                 <div class="col-md-6">
                     <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Désignation" name = "designation" type="text" [(ngModel)]="marque.designation">
+                        <input matInput placeholder="Désignation" name="designation" type="text"
+                               [(ngModel)]="marqueAdd.designation">
                     </mat-form-field>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" (click)="addMarque()" data-dismiss="modal">Ajouter</button>
+                <button type="button" class="btn btn-primary" (click)="addMarque()" data-dismiss="modal">Ajouter
+                </button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="ModelModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="ModelModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -160,7 +163,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-3">
-                       Marque
+                        Marque
                     </div>
                     <div class="col-md-6">
                         <select name="Marque" id="Marque" class="browser-default custom-select" [(ngModel)]="marque">
@@ -171,13 +174,15 @@
                 <div class="row">
                     <div class="col-md-6">
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Désignation" name = "designation" type="text" [(ngModel)]="model.designation">
+                            <input matInput placeholder="Désignation" name="designation" type="text"
+                                   [(ngModel)]="model.designation">
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-6">
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Version" name = "version" type="text" [(ngModel)]="model.version">
+                            <input matInput placeholder="Version" name="version" type="text"
+                                   [(ngModel)]="model.version">
                         </mat-form-field>
                     </div>
                 </div>
@@ -186,7 +191,8 @@
                         Energie :
                     </div>
                     <div class="col-md-3">
-                        <select name="Energie" id="Energie" class="browser-default custom-select" [(ngModel)]="model.energie">
+                        <select name="Energie" id="Energie" class="browser-default custom-select"
+                                [(ngModel)]="model.energie">
                             <option>Diesel</option>
                             <option>Essence</option>
                         </select>
@@ -195,7 +201,8 @@
                         Boite V:
                     </div>
                     <div class="col-md-3">
-                        <select name="Boite" id="boite" class="browser-default custom-select" [(ngModel)]="model.boiteVitesse">
+                        <select name="Boite" id="boite" class="browser-default custom-select"
+                                [(ngModel)]="model.boiteVitesse">
                             <option selected>Manuelle</option>
                             <option>Automatique</option>
                         </select>
@@ -205,12 +212,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Puissance Fiscal" name = "PF" type="number" [(ngModel)]="model.puissFiscal">
+                            <input matInput placeholder="Puissance Fiscal" name="PF" type="number"
+                                   [(ngModel)]="model.puissFiscal">
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="date Circulation" name = "dateC" type="date" [(ngModel)]="model.dateCirculation" required>
+                            <input matInput placeholder="date Circulation" name="dateC" type="date"
+                                   [(ngModel)]="model.dateCirculation" required>
                         </mat-form-field>
                     </div>
                 </div>
@@ -218,7 +227,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addModel()">Ajouter</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addModel()">Ajouter</button>
             </div>
         </div>
     </div>

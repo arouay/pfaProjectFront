@@ -12,8 +12,9 @@ export class MarqueService {
     constructor(private _httpClient: HttpClient) {
     }
 
-    getAll() {
-        return this._httpClient.get(this.baseUrl + 'all');
+    getAll(p, n) {
+        let url = this.baseUrl + 'all?page=' + p + '&size=' + n;
+        return this._httpClient.get(url);
     }
 
     add(marque: Marque) {

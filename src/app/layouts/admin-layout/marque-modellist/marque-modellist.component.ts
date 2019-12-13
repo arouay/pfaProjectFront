@@ -11,6 +11,7 @@ import {Model} from '../../../entities/model';
 })
 export class MarqueModellistComponent implements OnInit {
     @Input() private marque: Marque;
+    @Input() private marqueAdd: Marque = new Marque();
     @Input() private model: Model;
 
     private marques_initial: Marque[] = [];
@@ -19,15 +20,33 @@ export class MarqueModellistComponent implements OnInit {
     private marques: Marque[] = [];
     private models: Model[] = [];
 
+    //Pagination des marques
+    currentPage1: number = 1;
+    perPage1: number = 3;
+
+    //Pagination des marques
+    currentPage2: number = 1;
+    perPage2: number = 5;
+    totalP: number = 0;
+
+
     constructor(private _marqueService: MarqueService, private _modelService: ModelService) {
     }
 
     ngOnInit() {
         this.InitModelMarque();
-        this._marqueService.getAll().subscribe((data: Marque[]) =>
+        /*this._marqueService.getAll(this.currentPage1, this.perPage1).subscribe((data: Marque[]) =>
             (this.marques_initial = data,
-                this.marques = data, this.marque = data[0]));
-        this._modelService.getAll().subscribe((data: Model[]) => (this.models_initial = data, this.models = data));
+                this.marques = data, this.marque = data[0]));*/
+
+
+        this._marqueService.getAll(this.currentPage1 - 1, this.perPage1).subscribe((data) =>
+            (this.marques_initial = data['content'],
+                this.marques = data['content'], this.marque = data['content'][0]));
+
+
+        this._modelService.getAll(this.currentPage2 - 1, this.perPage2).subscribe((data) =>
+            (this.models_initial = data['content'], this.models = data['content'], this.totalP = data['totalPages']));
     }
 
     filterById(id: number) {
@@ -39,19 +58,15 @@ export class MarqueModellistComponent implements OnInit {
     }
 
     addMarque() {
-        this._marqueService.add(this.marque);
-        this.marques_initial.push(this.marque);
-        this.marques = this.marques_initial;
-        this.marque = new Marque();
+        this._marqueService.add(this.marqueAdd);
+        this.ngOnInit();
+        this.marqueAdd = new Marque();
     }
 
     addModel() {
         this.model.marque = this.marque;
-        console.log(this.marque);
-        console.log(this.model);
         this._modelService.add(this.model);
-        this.models_initial.push(this.model);
-        this.models = this.models_initial;
+        this.ngOnInit();
         this.model = new Model();
     }
 
@@ -64,5 +79,18 @@ export class MarqueModellistComponent implements OnInit {
         this.model = new Model();
         this.model.energie = 'Diesel';
         this.model.boiteVitesse = 'Manuelle';
+    }
+
+    ModelPagination(a) {
+        if (a === -1 && this.currentPage2 > 1) {
+            console.log(this.currentPage2);
+            this.currentPage2--;
+        } else if (a === 0 && this.currentPage2 < this.totalP - 1) {
+            this.currentPage2++;
+        } else if (a !== -1 && a !== 0) {
+            this.currentPage2 = a;
+        }
+        this._modelService.getAll(this.currentPage2 - 1, this.perPage2).subscribe((data) =>
+            (this.models_initial = data['content'], this.models = data['content'], this.totalP = data['totalPages']));
     }
 }
