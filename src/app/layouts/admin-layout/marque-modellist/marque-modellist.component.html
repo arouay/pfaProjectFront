@@ -97,7 +97,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <i class="material-icons" style="margin-left: 95%;cursor: pointer" data-toggle="modal" data-target="#ModelModalCenter">
+                        <i class="material-icons"  style="margin-left: 95%;cursor: pointer" data-toggle="modal" data-target="#ModelModalCenter">
                             add_circle_outline
                         </i>
                     </div>
@@ -158,11 +158,67 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <div class="row">
+                    <div class="col-md-3">
+                       Marque
+                    </div>
+                    <div class="col-md-6">
+                        <select name="Marque" id="Marque" class="browser-default custom-select" [(ngModel)]="marque">
+                            <option *ngFor="let m of marques" [ngValue]="m">{{m.designation}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Désignation" name = "designation" type="text" [(ngModel)]="model.designation">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Version" name = "version" type="text" [(ngModel)]="model.version">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Energie :
+                    </div>
+                    <div class="col-md-3">
+                        <select name="Energie" id="Energie" class="browser-default custom-select" [(ngModel)]="model.energie">
+                            <option>Diesel</option>
+                            <option>Essence</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        Boite V:
+                    </div>
+                    <div class="col-md-3">
+                        <select name="Boite" id="boite" class="browser-default custom-select" [(ngModel)]="model.boiteVitesse">
+                            <option selected>Manuelle</option>
+                            <option>Automatique</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Puissance Fiscal" name = "PF" type="number" [(ngModel)]="model.puissFiscal">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="date Circulation" name = "dateC" type="date" [(ngModel)]="model.dateCirculation" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addModel()">Ajouter</button>
             </div>
         </div>
     </div>

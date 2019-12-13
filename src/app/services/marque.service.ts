@@ -17,11 +17,11 @@ export class MarqueService {
     }
 
     add(marque: Marque) {
-        return this._httpClient.post(this.baseUrl + 'add',
+        this._httpClient.post(this.baseUrl + 'add',
             JSON.parse(JSON.stringify(marque))
         ).subscribe(
             response => {
-                console.log(response);
+                return response;
             }
         );
     }
