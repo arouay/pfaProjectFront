@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog,MatDialogConfig } from '@angular/material'
 import { Type } from 'app/entities/type';
 import { TypeService } from 'app/services/type.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-typeform',
@@ -26,6 +27,6 @@ export class TypeformComponent implements OnInit {
         console.log(error)
       }
     );
-    this._matDialog.closeAll();
+    this._matDialog.closeAll();  
   }
 }
