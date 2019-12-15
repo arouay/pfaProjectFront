@@ -5,9 +5,64 @@
         <div class="card">
           <div class="card-header card-header-danger">
             <h4 class="card-title ">Gestion des états</h4>
+            <i class="material-icons" style="cursor: pointer;" (click)="newEtat()" *ngIf="!add">add_circle_outline</i> 
+            <i class="material-icons" style="cursor: pointer;" (click)="hideAdd()" *ngIf="add">remove_circle_outline</i>            
           </div>
-          <div class="card-body">
+          <div class="card-body">            
             
+            <div class="row" *ngIf="add">              
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">                  
+                    <input matInput placeholder="Durée" name = "Durée" type="text" [(ngModel)]="etat.dureeEstime">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">                  
+                    <input matInput placeholder="Commentaire" name = "commentaire" type="text" [(ngModel)]="etat.commentaire">
+                  </mat-form-field>
+                </div> 
+                <div class="col-md-2">
+                  <button class="btn btn-light" (click)="ajouter()">Ajouter</button>
+                </div>               
+            </div>
+            <div class="container">             
+            
+              <div class="list-container">
+            
+                <div class="todo-container column-container">
+                  <div class="list"
+                  cdkDropList #todoList="cdkDropList"
+                  [cdkDropListData]="todos"
+                  [cdkDropListConnectedTo]="[doneList]"
+                  (cdkDropListDropped)="onDrop($event)">
+                    <h2>Etapes à faire</h2>
+                    <mat-card *ngFor="let todo of todos" cdkDrag>
+                      <mat-card-header>
+                        <mat-card-title>La durée de cette etape: {{todo.dureeEstime}}</mat-card-title>
+                        <mat-card-subtitle>Contenue: {{todo.commentaire}}</mat-card-subtitle>
+                      </mat-card-header>
+                    </mat-card>
+                  </div>
+                </div>
+            
+                <div class="done-container column-container">
+                  <div class="list"
+                  cdkDropList #doneList="cdkDropList"
+                  [cdkDropListData]="completed"
+                  [cdkDropListConnectedTo]="todoList"
+                  (cdkDropListDropped)="onDrop($event)">
+                    <h2>Etapes faites</h2>
+                    <mat-card *ngFor="let complete of completed" cdkDrag>
+                      <mat-card-header>
+                        <mat-card-title>La durée de cette etape: {{todo.dureeEstime}}</mat-card-title>
+                        <mat-card-subtitle>Contenue: {{todo.commentaire}}</mat-card-subtitle>
+                      </mat-card-header>
+                    </mat-card>
+                  </div>
+                </div>
+            
+              </div>
+            </div>   
         </div>
       </div>
 

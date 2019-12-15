@@ -43,6 +43,7 @@ export class InterventionlistComponent implements OnInit {
       this._interventionService.setter(i);
       this._router.navigate(['pieceslist']);
     }else if(destination == 'ge'){
+      this._interventionService.setter(i)
       this._router.navigate(['gestionetats']);
     }
   }
