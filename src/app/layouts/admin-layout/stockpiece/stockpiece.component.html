@@ -20,25 +20,24 @@
                       <div class="card-header card-header-light">              
                           <div class="row">
                             <div class="col-md-3">
-                              <select name="" class="browser-default custom-select">
-                                <option *ngFor="let r of refs" value="r">{{r}}</option>
-                                
+                              <input type="text" placeholder="Filtrer par Référence" class="form-control" [(ngModel)]="filRef">
+                            </div>
+                           
+                            <div class="col-md-3">
+                              <select name="designation" class="browser-default custom-select" [(ngModel)]="filDes"> 
+                                  <option value=""></option>                                                           
+                                <option *ngFor="let d of filtredDesignation" value="{{d}}">{{d}}</option>                               
                               </select>
                             </div>
                             <div class="col-md-3">
-                              <select name="" class="browser-default custom-select">
-                                <option  *ngFor="let p of prix" value="">{{p}}</option>
-                                
-                              </select>
-                            </div>
+                                <select name="prix" class="browser-default custom-select" [(ngModel)]="filPrix"> 
+                                    <option value=""></option>                                
+                                  <option  *ngFor="let p of filtredPrix" value="{{p}}">{{p}}</option>
+                                  
+                                </select>
+                              </div>
                             <div class="col-md-3">
-                              <select name="" class="browser-default custom-select">
-                                <option *ngFor="let d of designations" value="">{{d}}</option>
-                               
-                              </select>
-                            </div>
-                            <div class="col-md-3">
-                              <button class="btn btn-info">Rechercher</button>
+                              <button class="btn btn-info" (click)="filtre()">Rechercher</button>                              
                             </div>                            
                           </div>
                         </div>
@@ -57,7 +56,7 @@
                                  
                               </thead>
                               <tbody>
-                                  <tr *ngFor="let p of pieces">
+                                  <tr *ngFor="let p of filtredPieces">
                                       <td>
                                           {{p.reference}}
                                       </td>

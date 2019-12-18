@@ -23,25 +23,33 @@ export class InterventionformComponent implements OnInit {
   private factures:Facture[];
   private type:number;
   private facture:number;
-  constructor(private _interventionService:InterventionService, private _matDialog:MatDialog,private _router:Router, private typeService:TypeService, private _factureService:FactureService) { }
+  private isUpdate:boolean = false;
 
+  constructor(private _interventionService:InterventionService, private _matDialog:MatDialog,private _router:Router, private typeService:TypeService, private _factureService:FactureService) { }
+  
   ngOnInit() {
     //test si l'objet est nouveau ou bien provenant d'un autre composant par le biais du service'
     if(this._interventionService.getter() == null){
       this.intervention = new Intervention();
+      this.isUpdate = false;      
     }else {
+      this.isUpdate =true;
       this.intervention = this._interventionService.getter(); 
+      this.type = this.intervention.type.id;
+      if(this.intervention.facture != null)
+        this.facture = this.intervention.facture.id;
+      this._interventionService.setter(null);
     }
     this.typeService.getAll().subscribe(
       (response)=>{
-        this.types = response;
+        this.types = response;        
       }, (error)=>{
         console.log(error);
       }
     );
     this._factureService.getAll().subscribe(
       (response)=>{
-        this.factures = response;
+        this.factures = response;    
       }, (error)=>{
         console.log(error);
       }
@@ -58,8 +66,7 @@ export class InterventionformComponent implements OnInit {
         this._router.navigate(['interventionlist']);
       }, (error)=>{
         console.log(error);
-      });        
-      this.intervention = new Intervention();//Réinitialiser l'objet pour une autre operation
+      });              
     }    
   }
 

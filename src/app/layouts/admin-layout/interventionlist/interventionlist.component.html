@@ -43,17 +43,20 @@
                                             {{i.commentaire}}
                                         </td>
                                         <td>
-                                            {{i.dateDebut}}
+                                            {{i.dateDebut | date:'short'}}
                                         </td>
                                         <td>
-                                            {{i.dateFin}}
+                                            {{i.dateFin | date:'short'}}
                                         </td>
                                         <td>
                                             <strong>Libelle: </strong>{{i.type.libelle}} <strong>Prix: </strong>{{i.type.prix}} DH
                                         </td> 
-                                        <td>
-                                            {{i.facture.date}} <strong>Montant: </strong>{{i.facture.montant}} DH
-                                        </td>                                                                                                                         
+                                        <td *ngIf="i.facture != null">
+                                            {{i.facture.date | date:'short'}} <strong>Montant: </strong>{{i.facture.montant}} DH
+                                        </td>
+                                        <td *ngIf="i.facture == null">
+                                            Non facturée
+                                        </td>                                                                                                                          
                                         <td><button type="button" class="btn btn-info" (click)="navigate('pu',i)">Pièces utilisées</button></td>  
                                         <td><button type="button" class="btn btn-info" (click)="navigate('ge',i)">Gestion des états</button></td>                                      
                                         <td><i class="material-icons" style="cursor: pointer;" (click)="update(i)">create</i></td>

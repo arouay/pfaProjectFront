@@ -4,7 +4,8 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-danger">
-                <h4 class="card-title">Nouvelle interventions</h4>                
+                <h4 class="card-title" *ngIf="!isUpdate">Nouvelle interventions</h4>
+                <h4 class="card-title" *ngIf="isUpdate">Modification de l'interventions</h4>                    
             </div>
             <div class="card-body">
                 <form (ngSubmit)="processForm()">
@@ -12,12 +13,14 @@
                         
                         <div class="col-md-6">
                             <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Date début" name = "dateDebut" type="date" [(ngModel)]="intervention.dateDebut">
+                              <input *ngIf="!isUpdate" matInput placeholder="Date début" name = "dateDebut" type="date" [(ngModel)]="intervention.dateDebut">
+                              <input *ngIf="isUpdate" matInput placeholder="Date début" name = "dateDebut" type="datetime" [(ngModel)]="intervention.dateDebut">
                             </mat-form-field>
                         </div>
                         <div class="col-md-6">
                             <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Date fin" name="dateFin" type="date" [(ngModel)]="intervention.dateFin">
+                              <input *ngIf="!isUpdate" matInput placeholder="Date fin" name="dateFin" type="date" [(ngModel)]="intervention.dateFin">
+                              <input *ngIf="isUpdate" matInput placeholder="Date fin" name="dateFin" type="datetime" [(ngModel)]="intervention.dateFin">
                             </mat-form-field>
                         </div>
                     </div>
@@ -34,7 +37,7 @@
                         <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i (click)="newType()"><strong>Ajouter un type</strong></i></a>
                         <div class="col-md-6">
                           <select class="form-control" name="type" class="browser-default custom-select" [(ngModel)]="type">                          
-                            <option *ngFor="let t of types" value="{{t.id}}">Libelle: {{t.libelle}} Prix: {{t.prix}} DH</option>                                                                                                                                                              
+                            <option *ngFor="let t of types" value="{{t.id}}">{{t.libelle}}</option>                                                                                                                                                              
                           </select>
                         </div>                                
                       </div>
@@ -43,7 +46,7 @@
                           <a style="cursor:pointer;"><i class="material-icons" style="font-size:20px">create</i><i (click)="newFacture()"><strong>Ajouter une facture</strong></i></a>
                           <div class="col-md-6">
                             <select class="form-control" name="facture" class="browser-default custom-select" [(ngModel)]="facture">
-                              <option *ngFor="let f of factures" value="{{f.id}}">Date: {{f.date}} Montant: {{f.montant}}</option>                                                                                                                                                           
+                              <option *ngFor="let f of factures" value="{{f.id}}">Date: {{f.date | date:'short'}} Montant: {{f.montant}}</option>                                                                                                                                                           
                             </select>             
                           </div>                   
                         </div>

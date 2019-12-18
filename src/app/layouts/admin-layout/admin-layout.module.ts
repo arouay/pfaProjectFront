@@ -19,7 +19,9 @@ import {
   MatRippleModule,
   MatFormFieldModule,
   MatTooltipModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCardModule,
+  MatRadioModule
 } from '@angular/material';
 
 import { InterventionformComponent } from './interventionform/interventionform.component';
@@ -30,6 +32,7 @@ import { EtatslistComponent } from './etatslist/etatslist.component';
 import { GestionetatsComponent } from './gestionetats/gestionetats.component';
 import { PiecelistComponent } from './piecelist/piecelist.component';
 import { StockpieceComponent } from './stockpiece/stockpiece.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -37,11 +40,14 @@ import { StockpieceComponent } from './stockpiece/stockpiece.component';
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     MatButtonModule,
+    MatRadioModule,
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatCardModule,
+    DragDropModule
   ],
   declarations: [
     DashboardComponent,
