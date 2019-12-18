@@ -35,18 +35,15 @@ export class MarqueModellistComponent implements OnInit {
 
     ngOnInit() {
         this.InitModelMarque();
-        /*this._marqueService.getAll(this.currentPage1, this.perPage1).subscribe((data: Marque[]) =>
-            (this.marques_initial = data,
-                this.marques = data, this.marque = data[0]));*/
-
-
         this._marqueService.getAll(this.currentPage1 - 1, this.perPage1).subscribe((data) =>
             (this.marques_initial = data['content'],
                 this.marques = data['content'], this.marque = data['content'][0]));
 
-
         this._modelService.getAll(this.currentPage2 - 1, this.perPage2).subscribe((data) =>
-            (this.models_initial = data['content'], this.models = data['content'], this.totalP = data['totalPages']));
+            (this.models = data['content'], this.totalP = data['totalPages']));
+
+        this._modelService.getAll(0, 1000).subscribe((data) =>
+            (this.models_initial = data['content']));
     }
 
     filterById(id: number) {
@@ -59,19 +56,20 @@ export class MarqueModellistComponent implements OnInit {
 
     addMarque() {
         this._marqueService.add(this.marqueAdd);
-        this.ngOnInit();
         this.marqueAdd = new Marque();
+        this.ngOnInit();
     }
 
     addModel() {
         this.model.marque = this.marque;
         this._modelService.add(this.model);
-        this.ngOnInit();
+        this.models.push(this.model);
+        this.models_initial.push(this.model);
         this.model = new Model();
     }
 
     refrech() {
-        this.models = this.models_initial;
+        this.ngOnInit();
     }
 
     InitModelMarque() {
@@ -91,6 +89,6 @@ export class MarqueModellistComponent implements OnInit {
             this.currentPage2 = a;
         }
         this._modelService.getAll(this.currentPage2 - 1, this.perPage2).subscribe((data) =>
-            (this.models_initial = data['content'], this.models = data['content'], this.totalP = data['totalPages']));
+            (this.models = data['content'], this.totalP = data['totalPages']));
     }
 }
