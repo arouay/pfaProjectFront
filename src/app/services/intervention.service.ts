@@ -8,6 +8,7 @@ import 'rxjs/add/observable/throw';
 import { error } from 'util';
 import { Observable } from 'rxjs';
 import { Intervention } from 'app/entities/intervention';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,15 @@ export class InterventionService {
   newIntervention(intervention:Intervention){
     return this._http.post(this.baseUrl+'/new', JSON.stringify(intervention), this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
   }
+  updateIntervention(intervention:Intervention){
+    return this._http.put(this.baseUrl+'/update', JSON.stringify(intervention), this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
+  }
+
+  newEtat(inter:string,etat:string){
+    let params = new HttpParams().set("id_etat",etat).set("id_interv",inter);
+    return this._http.post(this.baseUrl+'/newEtat', params);
+  }
+
   getter(){
     return this.intervention;
   }
