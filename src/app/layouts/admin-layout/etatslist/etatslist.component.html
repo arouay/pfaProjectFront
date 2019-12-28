@@ -9,15 +9,15 @@
           <div class="card-body">
             <div class="card-header card-header-light">              
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3">                  
                   <select name="" id="" class="browser-default custom-select">
-                    <option value="">Interventions1</option>
-                    <option value="">Interventions2</option>
-                    <option value="">Interventions3</option>
+                    <option value="">Filtrer par intervention ...</option>
+                    <option  *ngFor="let i of allInterventions" value="">De {{i.dateDebut | date:'short'}} à {{i.dateFin | date:'short'}}</option>                    
                   </select>
                 </div>
                 <div class="col-md-3">
                   <select name="" id="" class="browser-default custom-select">
+                    <option value="">Filtrer par voiture ...</option>
                     <option value="">Voiture1</option>
                     <option value="">Voiture2</option>
                     <option value="">Voiture3</option>
@@ -25,6 +25,7 @@
                 </div>
                 <div class="col-md-3">
                   <select name="" id="" class="browser-default custom-select">
+                    <option value="">Filtrer par client ...</option>
                     <option value="">Client1</option>
                     <option value="">Client2</option>
                     <option value="">Client3</option>
@@ -39,7 +40,7 @@
               <table class="table">
                 <thead class=" text-primary">
                   <th>
-                    Durée éstimée
+                    Durée éstimée (en heures)
                   </th>
                   <th>
                     Commentaire
@@ -55,12 +56,18 @@
                   </th>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let etat of allEtats">
                     <td>
-
+                      {{etat.dureeEstime}}
                     </td>
                     <td>
-
+                      {{etat.commentaire}}
+                    </td>
+                    <td>
+                      
+                    </td>
+                    <td>
+                      
                     </td>
                   </tr>
 

@@ -17,6 +17,9 @@ export class GestionetatsComponent implements OnInit {
   etats:Etat[];
   etat:Etat;
   concernedIntervention:Intervention;
+  allEtats:Etat[];
+  existingEtat:String;
+
   constructor(private _serviceIntervention:InterventionService, private _serviceEtat:EtatService) { }
 
   ngOnInit() {   
@@ -30,6 +33,11 @@ export class GestionetatsComponent implements OnInit {
       }else {        
         this.todos.push(etat);        
       }
+    });
+    this._serviceEtat.getAll().subscribe((response)=>{
+      this.allEtats = response;
+    }, (error)=>{
+      console.log(error);
     });
   }
   onDrop(event:CdkDragDrop<Etat[]>){
@@ -65,5 +73,9 @@ export class GestionetatsComponent implements OnInit {
     });
     this.todos.push(this.etat);   
     this.etat = new Etat();
+  }
+  addExitingEtat(){
+    this.todos.push(this.allEtats.find(i=>i.id.toString() == this.existingEtat));
+    //link the status to the intervention ...
   }
 }

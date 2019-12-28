@@ -26,7 +26,15 @@
                 </div>               
             </div>
             <div class="container">             
-            
+            <div>
+              <div>
+                <h3>Ajouter une étape souvent confrontée:</h3>
+                <select name="etat" class="browser-default custom-select" (change)="addExitingEtat()" [(ngModel)]="existingEtat">
+                    <option *ngFor="let e of allEtats" value="{{e.id}}">Durée: {{e.dureeEstime}} - Désignation: {{e.commentaire}}</option>                                                           
+                                                 
+                </select>
+              </div>
+            </div>
               <div class="list-container">
             
                 <div class="todo-container column-container">
