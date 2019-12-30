@@ -11,7 +11,7 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
-
+import { ChartsModule } from 'ng2-charts';
 
 import {
   MatButtonModule,
@@ -47,7 +47,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSelectModule,
     MatTooltipModule,
     MatCardModule,
-    DragDropModule
+    DragDropModule,
+    ChartsModule
   ],
   declarations: [
     DashboardComponent,
