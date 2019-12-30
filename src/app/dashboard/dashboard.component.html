@@ -7,13 +7,11 @@
                       <div class="card-icon">
                           <i class="material-icons">content_copy</i>
                       </div>
-                      <p class="card-category">Espace utilisé</p>
-                      <h3 class="card-title">{{usedSpace}}
-                          <small>%</small>
-                      </h3>
+                      <p class="card-category">Espace libre</p>
+                      <h4 class="card-title">{{5-enAttente}} parmis 5 places</h4>
                   </div>
                   <div class="card-footer">
-                      
+                      <p style="color: red;" *ngIf="enAttente == 5">Attention vous n'avez plus de places disponibles !</p>
                   </div>
               </div>
           </div>
@@ -37,7 +35,7 @@
                       <div class="card-icon">
                           <i class="material-icons">info_outline</i>
                       </div>
-                      <p class="card-category">Interventions en attente</p>
+                      <p class="card-category">Interventions en cours</p>
                       <h3 class="card-title">{{enAttente}}</h3>
                   </div>
                   <div class="card-footer">
