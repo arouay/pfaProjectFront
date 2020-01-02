@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   totalRevenue: number = 0;
   enAttente: number = 0;
   nbClients: number = 12;
-  piechart: number[] = [120, 130, 180, 70];
+  piechart: number[] = [0, 0, 10, 5];
   barchartNbInter: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   barchartBenefice: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   interventions: Intervention[];
@@ -56,7 +56,11 @@ export class DashboardComponent implements OnInit {
     //les interventions en attentes ce sont eux qui occupe des places
     this._serviceIntervention.getAll().subscribe(
       (response: Intervention[]) => {
-        this.interventions = response;                                
+        this.interventions = response; 
+        ////PieChart
+        this.piechart[0] = this.interventions.length; 
+        this.radarChartData = [{ data: this.piechart, label: 'Récapitulatif' }];
+        ////                              
         response.forEach(element => {
           if ((element.etats.find(i => i.faite == false) != undefined) || element.etats.length == 0) {
             this.enAttente++;
@@ -73,7 +77,13 @@ export class DashboardComponent implements OnInit {
         this.barchartNbInter = response;        
         this._serviceIntervention.getBeneficeParMois().subscribe(
           (response:number[])=>{
-            this.barchartBenefice = response;                    
+            this.barchartBenefice = response;  
+            ////PieChart
+            this.barchartBenefice.forEach(element => {
+              this.piechart[1]+=element;
+            });
+            this.radarChartData = [{ data: this.piechart, label: 'Récapitulatif' }];
+            ////                  
             this.barChartData = [
               { data: this.barchartNbInter, label: "Nombre d'interventions" },
               { data: this.barchartBenefice, label: 'Bénéfice atteint (en 100 x 1 DHs)' }
