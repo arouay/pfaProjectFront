@@ -40,7 +40,12 @@ export class InterventionService {
     let params = new HttpParams().set("id_etat",etat).set("id_interv",inter);
     return this._http.post(this.baseUrl+'/newEtat', params);
   }
-
+  getIntervsParMois(){
+    return this._http.get(this.baseUrl+'/nbInterv',this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
+  }
+  getBeneficeParMois(){
+    return this._http.get(this.baseUrl+'/beneficeParMois',this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
+  }
   getter(){
     return this.intervention;
   }

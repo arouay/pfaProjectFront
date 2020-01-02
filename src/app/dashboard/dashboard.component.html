@@ -8,7 +8,7 @@
                           <i class="material-icons">content_copy</i>
                       </div>
                       <p class="card-category">Espace libre</p>
-                      <h4 class="card-title">{{5-enAttente}} parmis 5 places</h4>
+                      <h4 class="card-title">{{5-enAttente}} / 5 Places libre</h4>
                   </div>
                   <div class="card-footer">
                       <p style="color: red;" *ngIf="enAttente == 5">Attention vous n'avez plus de places disponibles !</p>
@@ -58,6 +58,12 @@
               </div>
           </div>
       </div>
+
+      <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Récapitulatif</h4>
+          </div>
+        <div class="card-body">
       <div class="row">
         <div class="col-md-12">
             <div style="display: block">
@@ -68,15 +74,13 @@
             </div>
           </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-            <hr style="margin-top: 1rem;
-            margin-bottom: 1rem;
-            border: 0;
-            border-top: 3px solid rgba(0, 0, 0, 0.1);"/>
-        </div>
+     </div>
       </div>
-      
+      <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Intervention/Bénéfice corrélation</h4>
+          </div>
+        <div class="card-body">
       <div class="row">
         <div class="col-md-12">
             <div style="display: block">
@@ -90,5 +94,6 @@
             </div>
         </div>
       </div>
-      
+      </div>
+      </div>
 </div>

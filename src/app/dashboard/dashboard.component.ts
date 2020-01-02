@@ -13,15 +13,18 @@ import { Intervention } from 'app/entities/intervention';
 export class DashboardComponent implements OnInit {
   totalRevenue: number = 0;
   enAttente: number = 0;
-  nbClients: number = 0;  
+  nbClients: number = 12;
+  piechart: number[] = [120, 130, 180, 70];
+  barchartNbInter: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  barchartBenefice: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  interventions: Intervention[];
 
-  constructor(private _serviceFacture:FactureService, private _serviceIntervention:InterventionService) { }
+  constructor(private _serviceFacture: FactureService, private _serviceIntervention: InterventionService, private serviceFacture:FactureService) { }
 
   //polar chart
   public radarChartLabels = ['Interventions', 'Bénéfice', "nombre d'heures de travail", 'Charges'];
   public radarChartData = [
-    {data: [120, 130, 180, 70], label: '2017'},
-    {data: [90, 150, 200, 45], label: '2018'}
+    { data: this.piechart, label: 'Récapitulatif' }
   ];
   public radarChartType = 'radar';
 
@@ -29,39 +32,57 @@ export class DashboardComponent implements OnInit {
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
-  }; 
+  };
   public barChartLabels = ['Décembre', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre'];
   public barChartType = 'bar';
-  public barChartLegend = true; 
+  public barChartLegend = true;
   public barChartData = [
-    { data: [65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56], label: "Nombre d'interventions" },
-    { data: [28, 48, 40, 19, 86, 27, 90, 40, 19, 86, 27, 90], label: 'Bénéfice atteint (en 100 x 1 DHs)' }
+    { data: this.barchartNbInter, label: "Nombre d'interventions" },
+    { data: this.barchartBenefice, label: 'Bénéfice atteint (en 100 x 1 DHs)' }
   ];
 
-  ngOnInit() {    
+  ngOnInit() {
     //total des revenues
     this._serviceFacture.getAll().subscribe(
-      (response:Facture[])=>{ 
+      (response: Facture[]) => {
         response.forEach(element => {
           this.totalRevenue += element.montant;
         });
-      }, (error)=>{
+      }, (error) => {
         console.log(error);
       }
     );
-    
+
     //les interventions en attentes ce sont eux qui occupe des places
     this._serviceIntervention.getAll().subscribe(
-      (response:Intervention[])=>{
+      (response: Intervention[]) => {
+        this.interventions = response;                                
         response.forEach(element => {
-          if((element.etats.find(i=>i.faite == false) != undefined) || element.etats.length == 0){
+          if ((element.etats.find(i => i.faite == false) != undefined) || element.etats.length == 0) {
             this.enAttente++;
           }
         });
-      }, (error)=>{
+      }, (error) => {
         console.log(error);
       }
     );
+
+    //get data to bar chart
+    this._serviceIntervention.getIntervsParMois().subscribe(
+      (response:number[])=>{
+        this.barchartNbInter = response;        
+        this._serviceIntervention.getBeneficeParMois().subscribe(
+          (response:number[])=>{
+            this.barchartBenefice = response;                    
+            this.barChartData = [
+              { data: this.barchartNbInter, label: "Nombre d'interventions" },
+              { data: this.barchartBenefice, label: 'Bénéfice atteint (en 100 x 1 DHs)' }
+            ];
+          }
+        );
+      }
+    );
+   
   }
 
 }
