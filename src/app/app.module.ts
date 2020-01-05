@@ -18,6 +18,7 @@ import {FactureformComponent} from './factureform/factureform.component';
 import {TokenInterceptor} from './Authentification/token.interceptor';
 import {AuthService} from './Authentification/auth.service';
 import {JwtInterceptor} from './Authentification/jwt.interceptor';
+import { AuthComponent } from './auth/auth.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import {JwtInterceptor} from './Authentification/jwt.interceptor';
         AdminLayoutComponent,
         TypeformComponent,
         FactureformComponent,
+        AuthComponent,
     ],
     providers: [
         {
