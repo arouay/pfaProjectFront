@@ -17,7 +17,10 @@ export class GestionetatsComponent implements OnInit {
   etats:Etat[];
   etat:Etat;
   concernedIntervention:Intervention;
-  constructor(private _serviceIntervention:InterventionService) { }
+  allEtats:Etat[];
+  existingEtat:String;
+
+  constructor(private _serviceIntervention:InterventionService, private _serviceEtat:EtatService) { }
 
   ngOnInit() {   
     this.etat = new Etat();
@@ -31,27 +34,48 @@ export class GestionetatsComponent implements OnInit {
         this.todos.push(etat);        
       }
     });
+    this._serviceEtat.getAll().subscribe((response)=>{
+      this.allEtats = response;
+    }, (error)=>{
+      console.log(error);
+    });
   }
   onDrop(event:CdkDragDrop<Etat[]>){
     if(event.previousContainer === event.container){
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);           
-    }else {
-      transferArrayItem(event.previousContainer.data,event.container.data,event.previousIndex,event.currentIndex); 
-      this.etats[event.currentIndex].faite = true;          
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);                
+    }else {      
+      this.etats[event.currentIndex].faite = true;  
+      //this.todos.splice(event.currentIndex,1);
+      //this.completed.push(this.etats[event.currentIndex])      
+      transferArrayItem(event.previousContainer.data,event.container.data,event.previousIndex,event.currentIndex);                      
     }
   }
-  newEtat(){
-    this.add = true;
-  }
-  hideAdd(){
-    this.add = false;
-    this.etat = new Etat();
+  
+  showHideAddClose(stat:boolean){
+    if(stat){
+      this.add = true;
+    }else {
+      this.add = false;
+      this.etat = new Etat();
+    }
   }
   ajouter(){
-    this.etat.faite = false;    
-    this.todos.push(this.etat);
-    this.concernedIntervention.etats.push(this.etat);
-    //call service.update ...
+    this.etat.faite = false;      
+    this._serviceEtat.newEtat(this.etat).subscribe((response)=>{
+      console.log(response);            
+      /*this._serviceIntervention.newEtat(this.concernedIntervention.id.toString(),response.id.toString()).subscribe((response)=>{
+        console.log(response);
+      }, (error)=>{
+        console.log(error);
+      });*/
+    }, (error)=>{
+      console.log(error);
+    });
+    this.todos.push(this.etat);   
     this.etat = new Etat();
+  }
+  addExitingEtat(){
+    this.todos.push(this.allEtats.find(i=>i.id.toString() == this.existingEtat));
+    //link the status to the intervention ...
   }
 }

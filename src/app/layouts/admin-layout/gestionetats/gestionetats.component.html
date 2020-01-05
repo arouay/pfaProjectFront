@@ -5,8 +5,8 @@
         <div class="card">
           <div class="card-header card-header-danger">
             <h4 class="card-title ">Gestion des états</h4>
-            <i class="material-icons" style="cursor: pointer;" (click)="newEtat()" *ngIf="!add">add_circle_outline</i> 
-            <i class="material-icons" style="cursor: pointer;" (click)="hideAdd()" *ngIf="add">remove_circle_outline</i>            
+            <i class="material-icons" style="cursor: pointer;" (click)="showHideAddClose(true)" *ngIf="!add">add_circle_outline</i> 
+            <i class="material-icons" style="cursor: pointer;" (click)="showHideAddClose(false)" *ngIf="add">remove_circle_outline</i>            
           </div>
           <div class="card-body">            
             
@@ -26,7 +26,15 @@
                 </div>               
             </div>
             <div class="container">             
-            
+            <div>
+              <div>
+                <h3>Ajouter une étape souvent confrontée:</h3>
+                <select name="etat" class="browser-default custom-select" (change)="addExitingEtat()" [(ngModel)]="existingEtat">
+                    <option *ngFor="let e of allEtats" value="{{e.id}}">Durée: {{e.dureeEstime}} - Désignation: {{e.commentaire}}</option>                                                           
+                                                 
+                </select>
+              </div>
+            </div>
               <div class="list-container">
             
                 <div class="todo-container column-container">
@@ -54,8 +62,8 @@
                     <h2>Etapes faites</h2>
                     <mat-card *ngFor="let complete of completed" cdkDrag>
                       <mat-card-header>
-                        <mat-card-title>La durée de cette etape: {{todo.dureeEstime}}</mat-card-title>
-                        <mat-card-subtitle>Contenue: {{todo.commentaire}}</mat-card-subtitle>
+                        <mat-card-title>La durée de cette etape: {{complete.dureeEstime}}</mat-card-title>
+                        <mat-card-subtitle>Contenue: {{complete.commentaire}}</mat-card-subtitle>
                       </mat-card-header>
                     </mat-card>
                   </div>

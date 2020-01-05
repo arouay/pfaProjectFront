@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import * as Chartist from 'chartist';
+import { FactureService } from 'app/services/facture.service';
+import { Facture } from 'app/entities/facture';
+import { InterventionService } from 'app/services/intervention.service';
+import { Intervention } from 'app/entities/intervention';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,144 +11,88 @@ import * as Chartist from 'chartist';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  totalRevenue: number = 0;
+  enAttente: number = 0;
+  nbClients: number = 12;
+  piechart: number[] = [0, 0, 10, 5];
+  barchartNbInter: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  barchartBenefice: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  interventions: Intervention[];
 
-  constructor() { }
-  startAnimationForLineChart(chart){
-      let seq: any, delays: any, durations: any;
-      seq = 0;
-      delays = 80;
-      durations = 500;
+  constructor(private _serviceFacture: FactureService, private _serviceIntervention: InterventionService, private serviceFacture:FactureService) { }
 
-      chart.on('draw', function(data) {
-        if(data.type === 'line' || data.type === 'area') {
-          data.element.animate({
-            d: {
-              begin: 600,
-              dur: 700,
-              from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-              to: data.path.clone().stringify(),
-              easing: Chartist.Svg.Easing.easeOutQuint
-            }
-          });
-        } else if(data.type === 'point') {
-              seq++;
-              data.element.animate({
-                opacity: {
-                  begin: seq * delays,
-                  dur: durations,
-                  from: 0,
-                  to: 1,
-                  easing: 'ease'
-                }
-              });
-          }
-      });
+  //polar chart
+  public radarChartLabels = ['Interventions', 'Bénéfice', "nombre d'heures de travail", 'Charges'];
+  public radarChartData = [
+    { data: this.piechart, label: 'Récapitulatif' }
+  ];
+  public radarChartType = 'radar';
 
-      seq = 0;
+  //bar chart
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
   };
-  startAnimationForBarChart(chart){
-      let seq2: any, delays2: any, durations2: any;
+  public barChartLabels = ['Décembre', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre'];
+  public barChartType = 'bar';
+  public barChartLegend = true;
+  public barChartData = [
+    { data: this.barchartNbInter, label: "Nombre d'interventions" },
+    { data: this.barchartBenefice, label: 'Bénéfice atteint (en 100 x 1 DHs)' }
+  ];
 
-      seq2 = 0;
-      delays2 = 80;
-      durations2 = 500;
-      chart.on('draw', function(data) {
-        if(data.type === 'bar'){
-            seq2++;
-            data.element.animate({
-              opacity: {
-                begin: seq2 * delays2,
-                dur: durations2,
-                from: 0,
-                to: 1,
-                easing: 'ease'
-              }
-            });
-        }
-      });
-
-      seq2 = 0;
-  };
   ngOnInit() {
-      /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
-
-      const dataDailySalesChart: any = {
-          labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-          series: [
-              [12, 17, 7, 17, 23, 18, 38]
-          ]
-      };
-
-     const optionsDailySalesChart: any = {
-          lineSmooth: Chartist.Interpolation.cardinal({
-              tension: 0
-          }),
-          low: 0,
-          high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-          chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+    //total des revenues
+    this._serviceFacture.getAll().subscribe(
+      (response: Facture[]) => {
+        response.forEach(element => {
+          this.totalRevenue += element.montant;
+        });
+      }, (error) => {
+        console.log(error);
       }
+    );
 
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
-
-      this.startAnimationForLineChart(dailySalesChart);
-
-
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-
-      const dataCompletedTasksChart: any = {
-          labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-          series: [
-              [230, 750, 450, 300, 280, 240, 200, 190]
-          ]
-      };
-
-     const optionsCompletedTasksChart: any = {
-          lineSmooth: Chartist.Interpolation.cardinal({
-              tension: 0
-          }),
-          low: 0,
-          high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-          chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
-      }
-
-      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
-
-      // start animation for the Completed Tasks Chart - Line Chart
-      this.startAnimationForLineChart(completedTasksChart);
-
-
-
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
-
-      var datawebsiteViewsChart = {
-        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-        series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-
-        ]
-      };
-      var optionswebsiteViewsChart = {
-          axisX: {
-              showGrid: false
-          },
-          low: 0,
-          high: 1000,
-          chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
-      };
-      var responsiveOptions: any[] = [
-        ['screen and (max-width: 640px)', {
-          seriesBarDistance: 5,
-          axisX: {
-            labelInterpolationFnc: function (value) {
-              return value[0];
-            }
+    //les interventions en attentes ce sont eux qui occupe des places
+    this._serviceIntervention.getAll().subscribe(
+      (response: Intervention[]) => {
+        this.interventions = response; 
+        ////PieChart
+        this.piechart[0] = this.interventions.length; 
+        this.radarChartData = [{ data: this.piechart, label: 'Récapitulatif' }];
+        ////                              
+        response.forEach(element => {
+          if ((element.etats.find(i => i.faite == false) != undefined) || element.etats.length == 0) {
+            this.enAttente++;
           }
-        }]
-      ];
-      var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
+        });
+      }, (error) => {
+        console.log(error);
+      }
+    );
 
-      //start animation for the Emails Subscription Chart
-      this.startAnimationForBarChart(websiteViewsChart);
+    //get data to bar chart
+    this._serviceIntervention.getIntervsParMois().subscribe(
+      (response:number[])=>{
+        this.barchartNbInter = response;        
+        this._serviceIntervention.getBeneficeParMois().subscribe(
+          (response:number[])=>{
+            this.barchartBenefice = response;  
+            ////PieChart
+            this.barchartBenefice.forEach(element => {
+              this.piechart[1]+=element;
+            });
+            this.radarChartData = [{ data: this.piechart, label: 'Récapitulatif' }];
+            ////                  
+            this.barChartData = [
+              { data: this.barchartNbInter, label: "Nombre d'interventions" },
+              { data: this.barchartBenefice, label: 'Bénéfice atteint (en 100 x 1 DHs)' }
+            ];
+          }
+        );
+      }
+    );
+   
   }
 
 }
