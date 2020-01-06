@@ -9,30 +9,21 @@
           <div class="card-body">
             <div class="card-header card-header-light">              
               <div class="row">
-                <div class="col-md-3">                  
-                  <select name="" id="" class="browser-default custom-select">
+                <div class="col-md-4"> 
+                  <label for="">Particulier </label>&nbsp;
+                  <input type="radio" name="typeclient" (click)="filterParticulier(false)" checked>                 
+                  <select name="" id="" class="browser-default custom-select" [(ngModel)]="intervention" *ngIf="!filter" (change)="rechercherParInterv()">
                     <option value="">Filtrer par intervention ...</option>
-                    <option  *ngFor="let i of allInterventions" value="">De {{i.dateDebut | date:'short'}} à {{i.dateFin | date:'short'}}</option>                    
+                    <option  *ngFor="let i of allInterventions" value="{{i.id}}">De {{i.dateDebut | date:'short'}} à {{i.dateFin | date:'short'}}</option>                    
                   </select>
+                </div>                                
+                <div class="col-md-5">
+                  <label for="">Par commentaire</label>&nbsp;
+                  <input type="radio" name="typeclient" (click)="filterParticulier(true)"> 
+                  <input type="text" placeholder="Filtrer par commentaire..." class="form-control" [(ngModel)]="commentaire" *ngIf="filter">
                 </div>
                 <div class="col-md-3">
-                  <select name="" id="" class="browser-default custom-select">
-                    <option value="">Filtrer par voiture ...</option>
-                    <option value="">Voiture1</option>
-                    <option value="">Voiture2</option>
-                    <option value="">Voiture3</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <select name="" id="" class="browser-default custom-select">
-                    <option value="">Filtrer par client ...</option>
-                    <option value="">Client1</option>
-                    <option value="">Client2</option>
-                    <option value="">Client3</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <input type="text" placeholder="Filtrer par ..." class="form-control">
+                  <button type="button" class="btn btn-primary" (click)="rechercherParComm()" *ngIf="filter">Rechercher</button>
                 </div>
               </div>
             </div>
@@ -44,19 +35,10 @@
                   </th>
                   <th>
                     Commentaire
-                  </th>
-                  <th>
-                    Intervention
-                  </th>
-                  <th>
-                    Voiture
-                  </th>
-                  <th>
-                    Client
-                  </th>
+                  </th>              
                 </thead>
                 <tbody>
-                  <tr *ngFor="let etat of allEtats">
+                  <tr *ngFor="let etat of filtredEat">
                     <td>
                       {{etat.dureeEstime}}
                     </td>

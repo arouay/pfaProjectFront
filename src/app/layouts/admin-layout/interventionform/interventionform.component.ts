@@ -24,6 +24,7 @@ export class InterventionformComponent implements OnInit {
   private type:number;
   private facture:number;
   private isUpdate:boolean = false;
+  valideDate:boolean = false;
 
   constructor(private _interventionService:InterventionService, private _matDialog:MatDialog,private _router:Router, private typeService:TypeService, private _factureService:FactureService) { }
   
@@ -35,10 +36,10 @@ export class InterventionformComponent implements OnInit {
     }else {
       this.isUpdate =true;
       this.intervention = this._interventionService.getter(); 
+      this._interventionService.setter(null);
       this.type = this.intervention.type.id;
       if(this.intervention.facture != null)
-        this.facture = this.intervention.facture.id;
-      this._interventionService.setter(null);
+        this.facture = this.intervention.facture.id;      
     }
     this.typeService.getAll().subscribe(
       (response)=>{
@@ -60,7 +61,7 @@ export class InterventionformComponent implements OnInit {
     this.intervention.type = this.types.find(i=>i.id == this.type);
     this.intervention.facture = this.factures.find(i=>i.id == this.facture);
     if(this.intervention.dateDebut > this.intervention.dateFin){
-      alert('Attention les dates sont incorrecte !');
+      this.valideDate = true;
     }else {
       this._interventionService.newIntervention(this.intervention).subscribe((response)=>{            
         this._router.navigate(['interventionlist']);

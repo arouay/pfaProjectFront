@@ -8,6 +8,13 @@
                 <h4 class="card-title" *ngIf="isUpdate">Modification de l'interventions</h4>                    
             </div>
             <div class="card-body">
+              <div class="alert alert-danger" *ngIf="valideDate">
+                <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="material-icons">close</i>
+                </button>
+                <span>
+                    <b> Attention - </b> les dates sont incorrecte !</span>
+              </div>
                 <form (ngSubmit)="processForm()">
                     <div class="row">
                         

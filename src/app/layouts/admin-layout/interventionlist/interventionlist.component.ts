@@ -39,11 +39,10 @@ export class InterventionlistComponent implements OnInit {
     }
   }
   navigate(destination:String,i:Intervention){
-    if(destination == 'pu'){    
-      this._interventionService.setter(i);
+    this._interventionService.setter(i);
+    if(destination == 'pu'){        
       this._router.navigate(['pieceslist']);
-    }else if(destination == 'ge'){
-      this._interventionService.setter(i)
+    }else if(destination == 'ge'){      
       this._router.navigate(['gestionetats']);
     }
   }
