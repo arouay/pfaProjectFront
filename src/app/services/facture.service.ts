@@ -22,7 +22,9 @@ export class FactureService {
   errorHandler(){
     return Observable.throw(error || 'SERVER ERROR');
   }
-  constructor(private _http:Http) { }
+  constructor(private _http:Http) {
+    this.options.headers.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
+  }
 
   newFacture(facture:Facture){
     return this._http.post(this.baseUrl+'new', JSON.stringify(facture), this.options).map((response:Response)=>response.json()).catch(this.errorHandler);

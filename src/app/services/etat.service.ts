@@ -22,7 +22,9 @@ export class EtatService {
   errorHandler(){
     return Observable.throw(error || 'SERVER ERROR');
   }
-  constructor(private _http:Http) { }
+  constructor(private _http:Http) {
+    this.options.headers.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
+  }
 
   newEtat(etat:Etat){
     return this._http.post(this.baseUrl+'new', JSON.stringify(etat), this.options).map((response:Response)=>response.json()).catch(this.errorHandler);

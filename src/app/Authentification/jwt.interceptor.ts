@@ -21,6 +21,7 @@ export class JwtInterceptor implements HttpInterceptor {
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 403) {
+                    localStorage.removeItem('token')
                     this.router.navigate(['auth'])
                 }
             }

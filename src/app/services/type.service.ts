@@ -21,7 +21,9 @@ export class TypeService {
   errorHandler(){
     return Observable.throw(error || 'SERVER ERROR');
   }
-  constructor(private _http:Http) { }
+  constructor(private _http:Http) {
+    this.options.headers.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
+  }
   newType(type:Type){
     return this._http.post(this.baseUrl+'new', JSON.stringify(type), this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
   }

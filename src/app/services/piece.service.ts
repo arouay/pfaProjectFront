@@ -17,7 +17,9 @@ export class PieceService {
   private options = new RequestOptions({headers:this.headers});
   private piece:Piece;//pour partager l'objet entre les composants
 
-  constructor(private _http:Http) { }
+  constructor(private _http:Http) {
+    this.options.headers.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
+  }
   errorHandler(){
     return Observable.throw(error || 'SERVER ERROR');
   }
