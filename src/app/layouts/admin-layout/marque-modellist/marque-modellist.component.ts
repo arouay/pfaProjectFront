@@ -22,7 +22,7 @@ export class MarqueModellistComponent implements OnInit {
 
     //Pagination des marques
     currentPage1: number = 1;
-    perPage1: number = 3;
+    perPage1: number = 6;
 
     //Pagination des marques
     currentPage2: number = 1;
@@ -56,8 +56,9 @@ export class MarqueModellistComponent implements OnInit {
 
     addMarque() {
         this._marqueService.add(this.marqueAdd);
+        this.refrech();
+        this.filterById(this.marqueAdd.id);
         this.marqueAdd = new Marque();
-        this.ngOnInit();
     }
 
     addModel() {
