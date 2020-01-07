@@ -11,7 +11,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/interventionlist', title: 'Gestion des interventions',  icon:'content_paste', class: '' },
     { path: '/etatslist', title: 'Historique des états',  icon:'all_inbox', class: '' },
-    { path: '/stockpiece', title: 'Stock des pieces',  icon:'storage', class: '' },
+    { path: '/stockpiece', title: 'Historique des pieces',  icon:'storage', class: '' },
     { path: '/marque-modellist', title: 'Marques et Models',  icon:'directions_car', class: '' },
     { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
     { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },

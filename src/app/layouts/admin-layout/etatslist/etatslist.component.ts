@@ -13,15 +13,20 @@ import { InterventionService } from 'app/services/intervention.service';
 })
 export class EtatslistComponent implements OnInit {
   allEtats:Etat[];
-  allInterventions:Intervention[];
+  allInterventions:Intervention[]=[new Intervention()];
   allVoitures:Voiture[];
   allClient:Client[];
+  intervention:number;
+  commentaire:string;
+  filtredEat:Etat[];  
+  filter:boolean = false;
 
   constructor(private _serviceEtat:EtatService, private _serviceIntervention:InterventionService) { }
 
   ngOnInit() {
     this._serviceEtat.getAll().subscribe((response)=>{
       this.allEtats = response;
+      this.filtredEat = this.allEtats;
       console.log(response);
     }, (error)=>{
       console.log(error);
@@ -31,5 +36,23 @@ export class EtatslistComponent implements OnInit {
     }, (error)=>{
       console.log(error);
     });
+  }
+  rechercherParInterv(){  
+    if(!this.filter){
+      if(this.allInterventions.find(i=>i.id == this.intervention) == undefined){
+        this.filtredEat = this.allEtats;
+      }else {
+        this.filtredEat = this.allInterventions.find(i=>i.id == this.intervention).etats;
+      }      
+    }        
+  }
+  rechercherParComm(){
+    if(this.filter){
+      this.filtredEat = this.allEtats.filter(i=>i.commentaire.includes(this.commentaire));           
+    }  
+  }
+  filterParticulier(filtre:boolean){
+    this.filtredEat = this.allEtats;
+    this.filter = filtre;
   }
 }
